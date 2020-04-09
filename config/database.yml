@@ -1,0 +1,48 @@
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  prepared_statements: false
+  pool: 2
+  variables:
+    statement_timeout: 30000
+  username: <%= ENV["PGUSER"] || "root" %>
+  password: <%= ENV["PGPASSWORD"] || "root" %>
+  host: <%= ENV["PGHOST"] || "localhost" %>
+  port: <%= ENV["PGPORT"] || "5436" %>
+
+development:
+  <<: *default
+  database: chess_server_development
+
+test:
+  <<: *default
+  database: chess_server_test
+
+production:
+  <<: *default
+  database: chess_server_production
+
+
+# default: &default
+#   adapter: postgresql
+#   encoding: unicode
+#   prepared_statements: false
+#   pool: 2
+#   variables:
+#     statement_timeout: 30000
+#   username: <%= ENV["PGUSER"] || "root" %>
+#   password: <%= ENV["PGPASSWORD"] || "root" %>
+#   host: <%= ENV["PGHOST"] || "localhost" %>
+#   port: <%= ENV["PGPORT"] || "5432" %>
+#
+# development:
+#   <<: *default
+#   database: datawarehouse_development
+#
+# test:
+#   <<: *default
+#   database: datawarehouse_test
+#
+# production:
+#   url: <%= ENV["DATABASE_URL"] %>
+#   pool: 2
