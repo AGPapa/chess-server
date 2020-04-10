@@ -24,4 +24,28 @@ RSpec.describe LocationInterpreter do
       end
     end
   end
+
+  describe "#to_external_rank" do
+    let(:rows) { (0..7).to_a }
+    let(:ranks) { ["8", "7", "6", "5", "4", "3", "2", "1"] }
+
+    it "translates the row to the correct rank" do
+      expect(rows.length).to eq(8)
+      rows.each_with_index do |row, index|
+        expect(to_external_rank(:row => row)).to eq(ranks[index])
+      end
+    end
+  end
+
+  describe "#to_external_file" do
+    let(:columns) { (0..7).to_a }
+    let(:files) { ["a", "b", "c", "d", "e", "f", "g", "h"] }
+
+    it "translates the column to the correct file" do
+      expect(columns.length).to eq(8)
+      columns.each_with_index do |column, index|
+        expect(to_external_file(:column => column)).to eq(files[index])
+      end
+    end
+  end
 end
