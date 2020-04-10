@@ -22,5 +22,4 @@ class Ply < ApplicationRecord
   def end_column
     to_internal_column(:file => move[2])
   end
-
 end

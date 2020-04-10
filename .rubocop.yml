@@ -1,0 +1,52 @@
+AllCops:
+  Exclude:
+    - db/**/*
+    - node_modules/node-sass/**/*
+    - Gemfile
+    - bin/*
+    - Rakefile
+
+Layout/LineLength:
+  Enabled: false
+
+Style/StringLiterals:
+  EnforcedStyle: double_quotes
+
+Style/StringLiteralsInInterpolation:
+  Enabled: false
+
+Style/HashSyntax:
+  EnforcedStyle: hash_rockets
+
+Style/ClassAndModuleChildren:
+  Enabled: false
+
+Style/FrozenStringLiteralComment:
+  Enabled: false
+
+Style/Documentation:
+  Enabled: false
+
+Metrics/AbcSize:
+  Enabled: false
+
+Metrics/BlockLength:
+  Enabled: false
+
+Metrics/ClassLength:
+  Enabled: false
+
+Metrics/CyclomaticComplexity:
+  Enabled: false
+
+Metrics/MethodLength:
+  Enabled: false
+
+Metrics/ModuleLength:
+  Enabled: false
+
+Metrics/ParameterLists:
+  Max: 7
+
+Metrics/PerceivedComplexity:
+  Enabled: false
