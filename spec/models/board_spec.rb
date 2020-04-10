@@ -18,4 +18,27 @@ RSpec.describe Board do
       )
     end
   end
+
+  describe ".move" do
+    let(:board) { described_class.new }
+    let(:ply) { Ply.new(:move => move) }
+
+    context "when moving a pawn two spaces" do
+      let(:move) { "e2e4" }
+
+      it "has the correct structure" do
+        board.move(:ply => ply)
+        expect(board.board).to eql(
+          [["R", "N", "B", "Q", "K", "B", "N", "R"],
+           ["P", "P", "P", "P", "P", "P", "P", "P"],
+           [" ", " ", " ", " ", " ", " ", " ", " "],
+           [" ", " ", " ", " ", " ", " ", " ", " "],
+           [" ", " ", " ", " ", "P", " ", " ", " "],
+           [" ", " ", " ", " ", " ", " ", " ", " "],
+           ["P", "P", "P", "P", " ", "P", "P", "P"],
+           ["R", "N", "B", "Q", "K", "B", "N", "R"]]
+        )
+      end
+    end
+  end
 end
