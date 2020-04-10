@@ -1,5 +1,4 @@
-require File.expand_path("../../config/environment", __dir__)
-require "rspec/rails"
+require "rails_helper"
 
 RSpec.describe Board do
   describe ".initialize" do
