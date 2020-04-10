@@ -1,9 +1,11 @@
 class Board
   include LocationInterpreter
 
-  attr_reader :board
+  attr_reader :board, :is_white_turn
 
   def initialize
+    @is_white_turn = true
+
     @board = Array.new(8) { Array.new(8) }
     @board.map!.with_index do |row, row_number|
       row.map!.with_index do |_square, col_number|
@@ -27,6 +29,8 @@ class Board
   end
 
   def move(ply:)
+    @is_white_turn = !is_white_turn
+
     piece = board[ply.start_row][ply.start_column]
     board[ply.start_row][ply.end_column] = " "
     board[ply.end_row][ply.end_column] = piece

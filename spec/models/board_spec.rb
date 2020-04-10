@@ -38,6 +38,11 @@ RSpec.describe Board do
            ["R", "N", "B", "Q", "K", "B", "N", "R"]]
         )
       end
+
+      it "is now black's turn" do
+        board.move(:ply => ply)
+        expect(board.is_white_turn).to eql(false)
+      end
     end
   end
 end
