@@ -1,5 +1,7 @@
 class Board
 
+  include LocationInterpreter
+
   attr_reader :board
 
   def initialize
@@ -7,54 +9,49 @@ class Board
     @board.map!.with_index do |row, row_number|
       row.map!.with_index do |square, col_number|
         if [1, 6].include?(row_number)
-          square = "P"
+          "P"
         elsif [0, 7].exclude?(row_number)
-          square = " "
+          " "
         elsif [0, 7].include?(col_number)
-          square = "R"
+          "R"
         elsif [1, 6].include?(col_number)
-          square = "N"
+          "N"
         elsif [2, 5].include?(col_number)
-          square = "B"
+          "B"
         elsif 3 == col_number
-          square = "Q"
+          "Q"
         elsif 4 == col_number
-          square = "K"
+          "K"
         end
       end
     end
   end
 
+  def move(ply:)
+    # start_row = ply[0]
+    # start_column = ply[1]
+    # end_row = ply[2]
+    # end_column = ply[3]
+    # promote = ply.length >= 4 && ply[4]
+
+    piece = board[ply.start_row][ply.start_column]
+    board[ply.start_row][ply.end_column] = " "
+    board[ply.end_row][ply.end_column] = piece
+  end
 
   def pretty_print
     board_str = ""
     board.each_with_index do |row, row_number|
-      board_str += _to_external_rank(:rank => row_number).to_s
+      board_str += to_external_rank(:row => row_number)
       row.each_with_index do |square, col_number|
         board_str += " #{square}"
       end
       board_str += "\n"
     end
     board_str += " "
-    (0...board.length).each { |index| board_str += " #{_to_external_file(:file => index)}" }
+    (0...board.length).each { |index| board_str += " #{to_external_file(:column => index)}" }
     puts board_str
     board_str
-  end
-
-  def _to_internal_rank(rank:)
-    8 - rank
-  end
- 
-  def _to_internal_file(file:)
-    ("A".."Z").to_a.find_index(file.upcase) + 1
-  end
-  
-  def _to_external_rank(rank:)
-    _to_internal_rank(:rank => rank)
-  end
-
-  def _to_external_file(file:)
-   ("A".."Z").to_a[file]
   end
 
 end
