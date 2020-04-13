@@ -9,20 +9,28 @@ class Board
     @board = Array.new(8) { Array.new(8) }
     @board.map!.with_index do |row, row_number|
       row.map!.with_index do |_square, col_number|
+        if [6, 7].include?(row_number)
+          side = "white"
+        elsif [0, 1].include?(row_number)
+          side = "black"
+        else
+          side = "empty"
+        end
+
         if [1, 6].include?(row_number)
-          "P"
+          Piece.new(:side => side, :type => "P")
         elsif [0, 7].exclude?(row_number)
-          " "
+          Piece.new(:side => side, :type => " ")
         elsif [0, 7].include?(col_number)
-          "R"
+          Piece.new(:side => side, :type => "R")
         elsif [1, 6].include?(col_number)
-          "N"
+          Piece.new(:side => side, :type => "N")
         elsif [2, 5].include?(col_number)
-          "B"
+          Piece.new(:side => side, :type => "B")
         elsif col_number == 3
-          "Q"
+          Piece.new(:side => side, :type => "Q")
         elsif col_number == 4
-          "K"
+          Piece.new(:side => side, :type => "K")
         end
       end
     end
@@ -41,7 +49,7 @@ class Board
     board.each_with_index do |row, row_number|
       board_str += to_external_rank(:row => row_number)
       row.each_with_index do |square, _col_number|
-        board_str += " #{square}"
+        board_str += " #{square.type}"
       end
       board_str += "\n"
     end

@@ -1,10 +1,11 @@
 class Piece
-  attr_reader :side
+  attr_reader :side, :type
 
-  def initialize(side:)
+  def initialize(side:, type:)
     raise "Invalid side" if ["white", "black", "empty"].exclude?(side)
 
     @side = side
+    @type = type
   end
 
   def white?

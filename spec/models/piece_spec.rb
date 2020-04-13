@@ -2,7 +2,7 @@ require "rails_helper"
 
 RSpec.describe Piece do
   describe ".initialize" do
-    let(:piece) { described_class.new(:side => side) }
+    let(:piece) { described_class.new(:side => side, :type => "P") }
 
     context "when the piece is white" do
       let(:side) { "white" }
