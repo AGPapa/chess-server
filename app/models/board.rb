@@ -9,13 +9,14 @@ class Board
     @board = Array.new(8) { Array.new(8) }
     @board.map!.with_index do |row, row_number|
       row.map!.with_index do |_square, col_number|
-        if [6, 7].include?(row_number)
-          side = "white"
-        elsif [0, 1].include?(row_number)
-          side = "black"
-        else
-          side = "empty"
-        end
+        side =
+          if [6, 7].include?(row_number)
+            "white"
+          elsif [0, 1].include?(row_number)
+            "black"
+          else
+            "empty"
+          end
 
         if [1, 6].include?(row_number)
           Piece.new(:side => side, :type => "P")
@@ -40,7 +41,7 @@ class Board
     @is_white_turn = !is_white_turn
 
     piece = board[ply.start_row][ply.start_column]
-    board[ply.start_row][ply.end_column] = " "
+    board[ply.start_row][ply.end_column] = Piece.new(:side => "empty", :type => " ")
     board[ply.end_row][ply.end_column] = piece
   end
 

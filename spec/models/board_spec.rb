@@ -5,7 +5,7 @@ RSpec.describe Board do
     let(:board) { described_class.new }
 
     it "has the correct structure" do
-      mapped = board.board.map { |piece| piece.type }
+      mapped = board.board.map { |row| row.map(&:type) }
       expect(mapped).to eql(
         [["R", "N", "B", "Q", "K", "B", "N", "R"],
          ["P", "P", "P", "P", "P", "P", "P", "P"],
@@ -28,7 +28,7 @@ RSpec.describe Board do
 
       it "has the correct structure" do
         board.move(:ply => ply)
-        mapped = board.board.map { |piece| piece.type }
+        mapped = board.board.map { |row| row.map(&:type) }
         expect(mapped).to eql(
           [["R", "N", "B", "Q", "K", "B", "N", "R"],
            ["P", "P", "P", "P", "P", "P", "P", "P"],
