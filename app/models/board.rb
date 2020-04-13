@@ -19,27 +19,27 @@ class Board
           end
 
         if [1, 6].include?(row_number)
-          Piece.new(:side => side, :type => "P")
+          Pieces::Piece.new(:side => side, :type => "P")
         elsif [0, 7].exclude?(row_number)
-          Piece.new(:side => side, :type => " ")
+          Pieces::Piece.new(:side => side, :type => " ")
         elsif [0, 7].include?(col_number)
-          Piece.new(:side => side, :type => "R")
+          Pieces::Rook.new(:side => side)
         elsif [1, 6].include?(col_number)
-          Piece.new(:side => side, :type => "N")
+          Pieces::Piece.new(:side => side, :type => "N")
         elsif [2, 5].include?(col_number)
-          Piece.new(:side => side, :type => "B")
+          Pieces::Piece.new(:side => side, :type => "B")
         elsif col_number == 3
-          Piece.new(:side => side, :type => "Q")
+          Pieces::Piece.new(:side => side, :type => "Q")
         elsif col_number == 4
-          Piece.new(:side => side, :type => "K")
+          Pieces::Piece.new(:side => side, :type => "K")
         end
       end
     end
   end
 
   def move(ply:)
-    # TODO check move is within the board (possibly validate in Ply)
-    # TODO piece cannot move to its current location (possibly validate in Ply)
+    # TODO: check move is within the board (possibly validate in Ply)
+    # TODO: piece cannot move to its current location (possibly validate in Ply)
 
     # piece in start location can be moved
     piece = board[ply.start_row][ply.start_column]
@@ -57,7 +57,7 @@ class Board
     # no other pieces are blocking the move
     # king is not put in check
 
-    board[ply.start_row][ply.end_column] = Piece.new(:side => "empty", :type => " ")
+    board[ply.start_row][ply.end_column] = Pieces::Piece.new(:side => "empty", :type => " ")
     board[ply.end_row][ply.end_column] = piece
 
     @is_white_turn = !is_white_turn

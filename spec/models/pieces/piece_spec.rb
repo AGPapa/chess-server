@@ -1,6 +1,6 @@
 require "rails_helper"
 
-RSpec.describe Piece do
+RSpec.describe Pieces::Piece do
   describe ".initialize" do
     let(:piece) { described_class.new(:side => side, :type => "P") }
 
