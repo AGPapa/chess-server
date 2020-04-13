@@ -25,7 +25,7 @@ class Board
         elsif [0, 7].include?(col_number)
           Pieces::Rook.new(:side => side)
         elsif [1, 6].include?(col_number)
-          Pieces::Piece.new(:side => side, :type => "N")
+          Pieces::Knight.new(:side => side)
         elsif [2, 5].include?(col_number)
           Pieces::Piece.new(:side => side, :type => "B")
         elsif col_number == 3
