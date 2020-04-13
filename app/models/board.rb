@@ -57,7 +57,7 @@ class Board
     # no other pieces are blocking the move
     # king is not put in check
 
-    board[ply.start_row][ply.end_column] = Pieces::Piece.new(:side => "empty", :type => " ")
+    board[ply.start_row][ply.start_column] = Pieces::Piece.new(:side => "empty", :type => " ")
     board[ply.end_row][ply.end_column] = piece
 
     @is_white_turn = !is_white_turn
