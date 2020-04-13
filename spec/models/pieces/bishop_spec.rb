@@ -1,5 +1,4 @@
 require "rails_helper"
-include LocationInterpreter
 
 RSpec.describe Pieces::Bishop do
   let(:bishop) { described_class.new(:side => "white") }
@@ -49,11 +48,13 @@ RSpec.describe Pieces::Bishop do
   end
 
   describe ".path_to_target" do
+    include LocationInterpreter
+
     context "when the bishop moves up and to the right" do
       it "returns a list of spaces in its path" do
         expect(bishop.path_to_target(:ply => Ply.new(:move => "a1d4"))).to match_array(
-          [OpenStruct.new(:row => to_internal_row(:rank => '2'), :column => to_internal_column(:file => 'b')),
-           OpenStruct.new(:row => to_internal_row(:rank => '3'), :column => to_internal_column(:file => 'c'))]
+          [OpenStruct.new(:row => to_internal_row(:rank => "2"), :column => to_internal_column(:file => "b")),
+           OpenStruct.new(:row => to_internal_row(:rank => "3"), :column => to_internal_column(:file => "c"))]
         )
       end
     end
@@ -61,8 +62,8 @@ RSpec.describe Pieces::Bishop do
     context "when the bishop moves up and to the left" do
       it "returns a list of spaces in its path" do
         expect(bishop.path_to_target(:ply => Ply.new(:move => "d1a4"))).to match_array(
-          [OpenStruct.new(:row => to_internal_row(:rank => '2'), :column => to_internal_column(:file => 'c')),
-           OpenStruct.new(:row => to_internal_row(:rank => '3'), :column => to_internal_column(:file => 'b'))]
+          [OpenStruct.new(:row => to_internal_row(:rank => "2"), :column => to_internal_column(:file => "c")),
+           OpenStruct.new(:row => to_internal_row(:rank => "3"), :column => to_internal_column(:file => "b"))]
         )
       end
     end
@@ -70,8 +71,8 @@ RSpec.describe Pieces::Bishop do
     context "when the bishop moves down and to the left" do
       it "returns a list of spaces in its path" do
         expect(bishop.path_to_target(:ply => Ply.new(:move => "d4a1"))).to match_array(
-          [OpenStruct.new(:row => to_internal_row(:rank => '3'), :column => to_internal_column(:file => 'c')),
-           OpenStruct.new(:row => to_internal_row(:rank => '2'), :column => to_internal_column(:file => 'b'))]
+          [OpenStruct.new(:row => to_internal_row(:rank => "3"), :column => to_internal_column(:file => "c")),
+           OpenStruct.new(:row => to_internal_row(:rank => "2"), :column => to_internal_column(:file => "b"))]
         )
       end
     end
@@ -79,8 +80,8 @@ RSpec.describe Pieces::Bishop do
     context "when the bishop moves down and to the right" do
       it "returns a list of spaces in its path" do
         expect(bishop.path_to_target(:ply => Ply.new(:move => "a4d1"))).to match_array(
-          [OpenStruct.new(:row => to_internal_row(:rank => '3'), :column => to_internal_column(:file => 'b')),
-           OpenStruct.new(:row => to_internal_row(:rank => '2'), :column => to_internal_column(:file => 'c'))]
+          [OpenStruct.new(:row => to_internal_row(:rank => "3"), :column => to_internal_column(:file => "b")),
+           OpenStruct.new(:row => to_internal_row(:rank => "2"), :column => to_internal_column(:file => "c"))]
         )
       end
     end
