@@ -38,11 +38,19 @@ class Board
   end
 
   def move(ply:)
-    @is_white_turn = !is_white_turn
-
     piece = board[ply.start_row][ply.start_column]
+    if is_white_turn && !piece.white?
+      return OpenStruct.new(:success? => false, :message => "Illegal ply - piece is non-white on white's turn")
+    elsif !is_white_turn && !piece.black?
+      return OpenStruct.new(:success? => false, :message => "Illegal ply - piece is non-black on black's turn")
+    end
+
     board[ply.start_row][ply.end_column] = Piece.new(:side => "empty", :type => " ")
     board[ply.end_row][ply.end_column] = piece
+
+    @is_white_turn = !is_white_turn
+
+    OpenStruct.new(:success? => true, :message => "Ply #{ply.move} applied")
   end
 
   def pretty_print
