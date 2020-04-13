@@ -38,12 +38,21 @@ class Board
   end
 
   def move(ply:)
+    # piece in start location can be moved
     piece = board[ply.start_row][ply.start_column]
-    if is_white_turn && !piece.white?
-      return OpenStruct.new(:success? => false, :message => "Illegal ply - piece is non-white on white's turn")
-    elsif !is_white_turn && !piece.black?
-      return OpenStruct.new(:success? => false, :message => "Illegal ply - piece is non-black on black's turn")
+    if (is_white_turn && !piece.white?) || (!is_white_turn && !piece.black?)
+      return OpenStruct.new(:success? => false, :message => "Illegal ply - must move piece of own color")
     end
+
+    # target location for piece is valid
+    target_piece = board[ply.end_row][ply.end_column]
+    if (is_white_turn && target_piece.white?) || (!is_white_turn && target_piece.black?)
+      return OpenStruct.new(:success? => false, :message => "Illegal ply - cannot target piece of own color")
+    end
+
+    # piece is allowed to move in that pattern
+    # no other pieces are blocking the move
+    # king is not put in check
 
     board[ply.start_row][ply.end_column] = Piece.new(:side => "empty", :type => " ")
     board[ply.end_row][ply.end_column] = piece

@@ -26,7 +26,7 @@ RSpec.describe Board do
     let(:ply) { Ply.new(:move => move) }
 
     context "when it is white's turn" do
-      context "when moving a white piece" do
+      context "when given a valid move for a white piece" do
         let(:move) { "e2e4" }
 
         it "returns success" do
@@ -50,6 +50,24 @@ RSpec.describe Board do
         it "is now black's turn" do
           board.move(:ply => ply)
           expect(board.is_white_turn).to eql(false)
+        end
+      end
+
+      context "when moving a piece into another of its own color" do
+        let(:move) { "a1a2" }
+
+        it "returns failure" do
+          expect(board.move(:ply => ply).success?).to eql(false)
+        end
+
+        it "does not move any piece" do
+          board.move(:ply => ply)
+          expect(mapped_board).to eql(STARTING_BOARD)
+        end
+
+        it "is still white's turn" do
+          board.move(:ply => ply)
+          expect(board.is_white_turn).to eql(true)
         end
       end
 

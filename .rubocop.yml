@@ -42,6 +42,9 @@ Style/HashTransformValues:
 Style/GuardClause:
   Enabled: false
 
+Style/IfUnlessModifier:
+  Enabled: false
+
 Metrics/AbcSize:
   Enabled: false
 
