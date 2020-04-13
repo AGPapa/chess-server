@@ -4,7 +4,6 @@ RSpec.describe Pieces::Knight do
   let(:knight) { described_class.new(:side => "white") }
 
   describe ".can_move_to_target" do
-
     context "when the knight moves up two and right one" do
       let(:ply) { Ply.new(:move => "a1b3") }
       it "returns true" do
@@ -68,7 +67,6 @@ RSpec.describe Pieces::Knight do
       end
     end
   end
-
 
   describe ".path_to_target" do
     let(:ply) { Ply.new(:move => "a1c2") }

@@ -27,7 +27,7 @@ RSpec.describe Board do
 
     context "when it is white's turn" do
       context "when given a valid move for a white piece" do
-        let(:move) { "e2e4" }
+        let(:move) { "e2e3" }
 
         it "returns success" do
           expect(board.move(:ply => ply).success?).to eql(true)
@@ -40,8 +40,8 @@ RSpec.describe Board do
              ["P", "P", "P", "P", "P", "P", "P", "P"],
              [" ", " ", " ", " ", " ", " ", " ", " "],
              [" ", " ", " ", " ", " ", " ", " ", " "],
-             [" ", " ", " ", " ", "P", " ", " ", " "],
              [" ", " ", " ", " ", " ", " ", " ", " "],
+             [" ", " ", " ", " ", "P", " ", " ", " "],
              ["P", "P", "P", "P", " ", "P", "P", "P"],
              ["R", "N", "B", "Q", "K", "B", "N", "R"]]
           )

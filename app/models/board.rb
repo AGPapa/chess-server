@@ -19,7 +19,7 @@ class Board
           end
 
         if [1, 6].include?(row_number)
-          Pieces::Piece.new(:side => side, :type => "P")
+          Pieces::Pawn.new(:side => side)
         elsif [0, 7].exclude?(row_number)
           Pieces::Piece.new(:side => side, :type => " ")
         elsif [0, 7].include?(col_number)
@@ -27,11 +27,11 @@ class Board
         elsif [1, 6].include?(col_number)
           Pieces::Knight.new(:side => side)
         elsif [2, 5].include?(col_number)
-          Pieces::Piece.new(:side => side, :type => "B")
+          Pieces::Bishop.new(:side => side)
         elsif col_number == 3
-          Pieces::Piece.new(:side => side, :type => "Q")
+          Pieces::Queen.new(:side => side)
         elsif col_number == 4
-          Pieces::Piece.new(:side => side, :type => "K")
+          Pieces::King.new(:side => side)
         end
       end
     end
