@@ -38,6 +38,9 @@ class Board
   end
 
   def move(ply:)
+    # TODO check move is within the board (possibly validate in Ply)
+    # TODO piece cannot move to its current location (possibly validate in Ply)
+
     # piece in start location can be moved
     piece = board[ply.start_row][ply.start_column]
     if (is_white_turn && !piece.white?) || (!is_white_turn && !piece.black?)
