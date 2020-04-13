@@ -5,9 +5,12 @@ module Pieces
     end
 
     def path_to_target(ply:)
-      path = (ply.start_row..ply.end_row).flat_map do |diff|
-        [OpenStruct.new(:row => ply.start_row + diff, :column => ply.start_column + diff)]
+      path = (0..(ply.end_row - ply.start_row).abs).map do |abs_diff|
+        row_diff = ply.end_row > ply.start_row ? abs_diff : - abs_diff
+        col_diff = ply.end_column > ply.start_column ? abs_diff : - abs_diff
+        OpenStruct.new(:row => ply.start_row + row_diff, :column => ply.start_column + col_diff)
       end
+
       path[1..-2]
     end
 
