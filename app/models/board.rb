@@ -59,6 +59,10 @@ class Board
     end
 
     # no other pieces are blocking the move
+    unless piece.path_to_target(:ply => ply).all? { |square| board[square.row][square.column].empty? }
+      return OpenStruct.new(:success? => false, :message => "Illegal ply - cannot move through other pieces")
+    end
+
     # king is not put in check
 
     board[ply.start_row][ply.start_column] = Pieces::Piece.new(:side => "empty", :type => " ")
