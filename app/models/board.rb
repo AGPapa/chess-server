@@ -54,6 +54,10 @@ class Board
     end
 
     # piece is allowed to move in that pattern
+    unless piece.can_move_to_target(:ply => ply)
+      return OpenStruct.new(:success? => false, :message => "Illegal ply - cannot move in this pattern")
+    end
+
     # no other pieces are blocking the move
     # king is not put in check
 

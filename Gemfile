@@ -44,6 +44,7 @@ group :development do
   gem "pry-byebug"
   gem "rspec-rails", "~> 3.3"
   gem "rubocop", "~> 0.80.1", :require => false
+  gem "rubocop-daemon", :require => false
   gem "rubocop-rspec", :require => false
 end
 

@@ -106,6 +106,24 @@ RSpec.describe Board do
           expect(board.is_white_turn).to eql(true)
         end
       end
+
+      context "when making an invalid move" do
+        let(:move) { "b1c4" }
+
+        it "returns failure" do
+          expect(board.move(:ply => ply).success?).to eql(false)
+        end
+
+        it "does not move any piece" do
+          board.move(:ply => ply)
+          expect(mapped_board).to eql(STARTING_BOARD)
+        end
+
+        it "is still white's turn" do
+          board.move(:ply => ply)
+          expect(board.is_white_turn).to eql(true)
+        end
+      end
     end
   end
 end
